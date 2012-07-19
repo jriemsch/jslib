@@ -1,0 +1,36 @@
+server: http://localhost:9876
+
+load:
+  - ../main/libs/jquery-1.7.1.js
+  - ../main/js/JsLib.js
+  - ../main/js/utils/ArrayUtils.js
+  - mocks/ClockMock.js
+  - mocks/RandomMock.js
+  - ../main/js/utils/TypeUtils.js
+  - ../main/js/utils/ArgumentUtils.js
+  - ../main/js/utils/ClosureUtils.js
+  - ../main/js/utils/Observer.js
+  - ../main/js/utils/RegExUtils.js
+  - ../main/js/utils/DeviceUtils.js
+  - ../main/js/utils/TouchUtils.js
+  - ../main/js/structures/JobQueue.js
+  - ../main/js/structures/JobQueueGroup.js
+  - ../main/js/storage/Storage.js
+  - ../main/js/gestures/Scroll.js
+  - ../main/js/gestures/Tap.js
+  - ../main/js/gestures/LongTouch.js
+  - testutils/AsyncTestUtils.js
+test:
+  - utils/ArrayUtilsTest.js
+  - utils/TypeUtilsTest.js
+  - utils/ArgumentUtilsTest.js
+  - utils/ClosureUtilsTest.js
+  - utils/ObserverTest.js
+  - utils/RegExUtilsTest.js
+  - utils/RandomTest.js
+  - structures/JobQueueTest.js
+  - structures/JobQueueGroupTest.js
+  - storage/StorageTest.js
+  - gestures/ScrollTest.js
+  - gestures/TapTest.js
+  - gestures/LongTouchTest.js
