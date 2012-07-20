@@ -15,6 +15,20 @@ TestCase("TypeUtilsTest", {
     assertEquals('Type', typeObj.toString());
   },
 
+  testEnhanceByMethods: function () {
+    var typeObj = TypeUtils.enhanceByMethods('Type', ['crt'], {
+      crt: function (name) {
+        return { name: name };
+      }
+    });
+
+    var obj = typeObj.crt('test');
+    assertEquals('test', obj.name);
+    assertTrue(TypeUtils.isOfType(obj, typeObj));
+    assertEquals('Type', typeObj.getType());
+    assertEquals('Type', typeObj.toString());
+  },
+
   testEnhanceEnum: function () {
     var typeObj = TypeUtils.enhanceEnum('Enum', {
       KEY1: { value: 'KEY1' },

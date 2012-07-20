@@ -2,6 +2,15 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 
 // Various utility functions for adding and testing type information for an object.
 (function () {
+  function enhanceMethod(typeObj, method) {
+    var original = typeObj[method];
+    typeObj[method] = function () {
+      var obj = original.apply(this, arguments);
+      net.riemschneider.utils.TypeUtils.addType(obj, typeObj);
+      return obj;
+    };
+  }
+
   net.riemschneider.utils.TypeUtils = {
     addType: function addType(obj, typeObj) {
       if (typeof typeObj.getType != 'function') {
@@ -46,12 +55,16 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     enhance: function enhance(typeId, typeObj) {
       typeObj.getType = function getType() { return typeId; };
       typeObj.toString = function toString() { return typeId; };
-      var originalCreate = typeObj.create;
-      typeObj.create = function () {
-        var obj = originalCreate.apply(this, arguments);
-        net.riemschneider.utils.TypeUtils.addType(obj, typeObj);
-        return obj;
-      };
+      enhanceMethod(typeObj, 'create');
+      return typeObj;
+    },
+
+    enhanceByMethods: function enhanceByMethods(typeId, methods, typeObj) {
+      typeObj.getType = function getType() { return typeId; };
+      typeObj.toString = function toString() { return typeId; };
+      for (var idx in methods) {
+        enhanceMethod(typeObj, methods[idx]);
+      }
 
       return typeObj;
     },
