@@ -13,6 +13,7 @@ load:
   - ../main/js/utils/RegExUtils.js
   - ../main/js/utils/DeviceUtils.js
   - ../main/js/utils/TouchUtils.js
+  - ../main/js/graphics/Position.js
   - ../main/js/structures/JobQueue.js
   - ../main/js/structures/JobQueueGroup.js
   - ../main/js/storage/Storage.js
@@ -28,6 +29,7 @@ test:
   - utils/ObserverTest.js
   - utils/RegExUtilsTest.js
   - utils/RandomTest.js
+  - graphics/PositionTest.js
   - structures/JobQueueTest.js
   - structures/JobQueueGroupTest.js
   - storage/StorageTest.js
