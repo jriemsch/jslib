@@ -63,6 +63,7 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertNumber('bla'); }, "TypeError");
     assertException(function () { ArgumentUtils.assertNumber(false); }, "TypeError");
     assertException(function () { ArgumentUtils.assertNumber(true); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertNumber({}); }, "TypeError");
     assertException(function () { ArgumentUtils.assertNumber(); }, "TypeError");
   },
 
@@ -92,7 +93,20 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertString(1); }, "TypeError");
     assertException(function () { ArgumentUtils.assertString(false); }, "TypeError");
     assertException(function () { ArgumentUtils.assertString(true); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertString({}); }, "TypeError");
     assertException(function () { ArgumentUtils.assertString(); }, "TypeError");
+  },
+
+  testAssertObject: function () {
+    ArgumentUtils.assertMap({});
+
+    assertException(function () { ArgumentUtils.assertMap(null); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertMap([]); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertMap(1); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertMap(""); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertMap(false); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertMap(true); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertMap(); }, "TypeError");
   },
 
   testAssertArray: function () {

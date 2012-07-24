@@ -35,6 +35,12 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
     },
 
+    assertMap: function assertMap(arg) {
+      if (arg === null || typeof arg !== 'object' || Object.prototype.toString.apply(arg) === '[object Array]') {
+        throw new TypeError('argument should be an object');
+      }
+    },
+
     assertRange: function assertRange(arg, from, to) {
       this.assertNumber(arg);
       if (arg < from || ((typeof to !== 'undefined') && arg > to)) {
