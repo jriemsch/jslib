@@ -35,9 +35,15 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
     },
 
-    assertMap: function assertMap(arg) {
+    assertMap: function assertMap(arg, elemPredicate) {
       if (arg === null || typeof arg !== 'object' || Object.prototype.toString.apply(arg) === '[object Array]') {
         throw new TypeError('argument should be an object');
+      }
+
+      if (elemPredicate) {
+        for (var key in arg) {
+          elemPredicate(key, arg[key]);
+        }
       }
     },
 

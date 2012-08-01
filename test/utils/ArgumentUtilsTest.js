@@ -97,7 +97,7 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertString(); }, "TypeError");
   },
 
-  testAssertObject: function () {
+  testAssertMap: function () {
     ArgumentUtils.assertMap({});
 
     assertException(function () { ArgumentUtils.assertMap(null); }, "TypeError");
@@ -107,6 +107,18 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertMap(false); }, "TypeError");
     assertException(function () { ArgumentUtils.assertMap(true); }, "TypeError");
     assertException(function () { ArgumentUtils.assertMap(); }, "TypeError");
+  },
+
+  testAssertMapWithPredicate: function () {
+    ArgumentUtils.assertMap({ a: 1, b: 2 }, function (key, value) {
+      ArgumentUtils.assertTrue((key === 'a' && value === 1) || (key === 'b' && value === 2));
+    });
+
+    assertException(function () {
+      ArgumentUtils.assertMap({ a: 1, b: 3 }, function (key, value) {
+        ArgumentUtils.assertTrue((key === 'a' && value === 1) || (key === 'b' && value === 2));
+      });
+    }, 'TypeError');
   },
 
   testAssertArray: function () {
