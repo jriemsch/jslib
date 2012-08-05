@@ -49,6 +49,12 @@ net.riemschneider.testutils = net.riemschneider.testutils || {};
       var allRecordings = recorded[recorder.funcName];
       var filtered = ArrayUtils.filter(allRecordings, matcher);
       return filtered.length >= 1 ? filtered[filtered.length - 1] : null;
+    },
+
+    matchRecordingByObj: function matchRecordingByObj(obj) {
+      return function (recording) {
+        return recording.obj[0] === obj[0];
+      };
     }
   };
 }());
