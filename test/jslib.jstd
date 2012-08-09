@@ -16,6 +16,9 @@ load:
   - ../main/js/graphics/Position.js
   - ../main/js/structures/JobQueue.js
   - ../main/js/structures/JobQueueGroup.js
+  - ../main/js/structures/State.js
+  - ../main/js/structures/ViewState.js
+  - ../main/js/structures/StateMachine.js
   - ../main/js/storage/Storage.js
   - ../main/js/gestures/Scroll.js
   - ../main/js/gestures/Tap.js
@@ -32,6 +35,9 @@ test:
   - graphics/PositionTest.js
   - structures/JobQueueTest.js
   - structures/JobQueueGroupTest.js
+  - structures/StateTest.js
+  - structures/ViewStateTest.js
+  - structures/StateMachineTest.js
   - storage/StorageTest.js
   - gestures/ScrollTest.js
   - gestures/TapTest.js

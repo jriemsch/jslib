@@ -97,6 +97,28 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertString(); }, "TypeError");
   },
 
+  testAssertBoolean: function () {
+    ArgumentUtils.assertBoolean(true);
+    ArgumentUtils.assertBoolean(false);
+
+    assertException(function () { ArgumentUtils.assertBoolean(null); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertBoolean(1); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertBoolean(''); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertBoolean({}); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertBoolean(); }, "TypeError");
+  },
+
+  testAssertFunction: function () {
+    ArgumentUtils.assertFunction(function () {});
+
+    assertException(function () { ArgumentUtils.assertFunction(null); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertFunction(1); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertFunction(true); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertFunction(''); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertFunction({}); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertFunction(); }, "TypeError");
+  },
+
   testAssertMap: function () {
     ArgumentUtils.assertMap({});
 

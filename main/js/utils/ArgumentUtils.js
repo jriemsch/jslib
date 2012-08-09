@@ -60,6 +60,18 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
     },
 
+    assertBoolean: function assertBoolean(arg) {
+      if (typeof arg !== 'boolean') {
+        throw new TypeError('argument should be a boolean');
+      }
+    },
+
+    assertFunction: function assertFunction(arg) {
+      if (typeof arg !== 'function') {
+        throw new TypeError('argument should be a function');
+      }
+    },
+
     assertArray: function assertArray(arg, elemPredicate) {
       if (Object.prototype.toString.apply(arg) !== '[object Array]') {
         throw new TypeError('argument should be an array: ' + arg);
