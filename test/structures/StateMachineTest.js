@@ -6,21 +6,24 @@ TestCase('StateMachineTest', {
   testCreate: function () {
     var stateMachine = StateMachine.create();
     assertTrue(TypeUtils.isOfType(stateMachine, StateMachine));
+    assertNull(stateMachine.getCurrentStateId());
   },
 
   testStartWithStartState: function () {
     var stateMachine = StateMachine.create();
-    var state = State.create(stateMachine, 'id', true);
+    var state = State.create(stateMachine, 'start', true);
     var enterCalled = false;
     state.onEnter = function () { enterCalled = true; };
     stateMachine.start();
     assertTrue(enterCalled);
+    assertEquals('start', stateMachine.getCurrentStateId());
   },
 
   testStartWithoutStartState: function () {
     var stateMachine = StateMachine.create();
     State.create(stateMachine, 'id', false);
     assertException(function () { stateMachine.start(); }, 'TypeError');
+    assertNull(stateMachine.getCurrentStateId());
   },
 
   testTwoStartStates: function () {
@@ -43,6 +46,7 @@ TestCase('StateMachineTest', {
     assertTrue(fromEnterCalled);
     stateMachine.transitionTo('to');
     assertTrue(toEnterCalled);
+    assertEquals('to', stateMachine.getCurrentStateId());
   },
 
   testRegisterStateNullAndTypeSafe: function () {
@@ -72,6 +76,7 @@ TestCase('StateMachineTest', {
     assertException(function () { stateMachine.transitionTo(null); }, 'TypeError');
 
     assertException(function () { stateMachine.transitionTo(123); }, 'TypeError');
+    assertEquals('start', stateMachine.getCurrentStateId());
   },
 
   testTransitionToStateMustExist: function () {
@@ -79,11 +84,13 @@ TestCase('StateMachineTest', {
     State.create(stateMachine, 'start', true);
     stateMachine.start();
     assertException(function () { stateMachine.transitionTo('to'); }, 'TypeError');
+    assertEquals('start', stateMachine.getCurrentStateId());
   },
 
   testTransitionToStateMachineMustBeStarted: function () {
     var stateMachine = StateMachine.create();
     State.create(stateMachine, 'to', true);
     assertException(function () { stateMachine.transitionTo('to'); }, 'TypeError');
+    assertNull(stateMachine.getCurrentStateId());
   }
 });

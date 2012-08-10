@@ -8,8 +8,8 @@ net.riemschneider.structures = net.riemschneider.structures || {};
 
   net.riemschneider.structures.StateMachine = {
     create: function create() {
-      var currentState = null;
-      var startState = null;
+      var currentStateId = null;
+      var startStateId = null;
       var states = {};
 
       return {
@@ -21,26 +21,31 @@ net.riemschneider.structures = net.riemschneider.structures || {};
 
           states[stateId] = state;
           if (isStartState) {
-            ArgumentUtils.assertTrue(startState === null);
-            startState = state;
+            ArgumentUtils.assertTrue(startStateId === null);
+            startStateId = stateId;
           }
         },
 
         start: function start() {
-          ArgumentUtils.assertNotNull(startState);
+          ArgumentUtils.assertNotNull(startStateId);
+          var startState = states[startStateId];
           startState.onEnter();
-          currentState = startState;
+          currentStateId = startStateId;
         },
 
         transitionTo: function transitionTo(stateId) {
-          ArgumentUtils.assertNotNull(currentState);
+          ArgumentUtils.assertNotNull(currentStateId);
           ArgumentUtils.assertString(stateId);
           var state = states[stateId];
           ArgumentUtils.assertNotNull(state);
 
-          currentState.onLeave();
+          states[currentStateId].onLeave();
           state.onEnter();
-          currentState = state;
+          currentStateId = stateId;
+        },
+
+        getCurrentStateId: function getCurrentStateId() {
+          return currentStateId;
         }
       };
     }
