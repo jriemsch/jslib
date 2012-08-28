@@ -3,7 +3,6 @@ net.riemschneider.structures = net.riemschneider.structures || {};
 // A simple state machine.
 (function () {
   var ArgumentUtils = net.riemschneider.utils.ArgumentUtils;
-  var State = net.riemschneider.structures.State;
   var TypeUtils = net.riemschneider.utils.TypeUtils;
 
   net.riemschneider.structures.StateMachine = {
@@ -15,7 +14,7 @@ net.riemschneider.structures = net.riemschneider.structures || {};
       return {
         registerState: function registerState(stateId, state, isStartState) {
           ArgumentUtils.assertString(stateId);
-          ArgumentUtils.assertType(state, State);
+          ArgumentUtils.assertType(state, net.riemschneider.structures.State);
           ArgumentUtils.assertBoolean(isStartState);
           ArgumentUtils.assertUndefined(states[stateId]);
 

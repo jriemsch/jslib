@@ -15,7 +15,7 @@ net.riemschneider.structures = net.riemschneider.structures || {};
         onEnter: function onEnter() {},
         onLeave: function onLeave() {}
       };
-      TypeUtils.addType(state, State);
+      TypeUtils.addType(state, net.riemschneider.structures.State);
       stateMachine.registerState(stateId, state, isStartState);
       return state;
     }
