@@ -78,7 +78,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
 
       if (elemPredicate) {
-        for (var idx in arg) {
+        for (var idx = 0, len = arg.length; idx < len; ++idx) {
           elemPredicate(arg[idx]);
         }
       }

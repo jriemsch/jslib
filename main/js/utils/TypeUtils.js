@@ -62,7 +62,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     enhanceByMethods: function enhanceByMethods(typeId, methods, typeObj) {
       typeObj.getType = function getType() { return typeId; };
       typeObj.toString = function toString() { return typeId; };
-      for (var idx in methods) {
+      for (var idx = methods.length - 1; idx >= 0; --idx) {
         enhanceMethod(typeObj, methods[idx]);
       }
 
@@ -73,8 +73,10 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       typeObj.getType = function getType() { return typeId; };
       typeObj.toString = function toString() { return typeId; };
       for (var key in typeObj) {
-        var value = typeObj[key];
-        net.riemschneider.utils.TypeUtils.addType(value, typeObj);
+        if (typeObj.hasOwnProperty(key) && typeof typeObj[key] === 'object') {
+          var value = typeObj[key];
+          net.riemschneider.utils.TypeUtils.addType(value, typeObj);
+        }
       }
       return typeObj;
     }

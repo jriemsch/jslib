@@ -37,6 +37,8 @@ TestCase("TypeUtilsTest", {
 
     assertTrue(TypeUtils.isOfType(typeObj.KEY1, typeObj));
     assertTrue(TypeUtils.isOfType(typeObj.KEY2, typeObj));
+    assertUndefined(typeObj.getType.types);
+    assertUndefined(typeObj.toString.types);
   },
 
   testAddTypeAndIsOfType: function () {

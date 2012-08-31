@@ -18,7 +18,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     setTime: function setTime(newTime) {
       time = newTime;
       var trigger = ArrayUtils.filter(timeouts, function (elem) { return elem.time <= time; });
-      for (var idx in trigger) {
+      for (var idx = trigger.length - 1; idx >= 0; --idx) {
         trigger[idx].callback();
       }
       timeouts = ArrayUtils.filter(timeouts, function (elem) { return elem.time > time; });

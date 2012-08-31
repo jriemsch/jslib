@@ -58,7 +58,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 
     filter: function filter(array, predicate) {
       var filtered = [];
-      for (var idx in array) {
+      for (var idx = 0, len = array.length; idx < len; ++idx) {
         var elem = array[idx];
         if (predicate(elem)) {
           filtered.push(elem);
