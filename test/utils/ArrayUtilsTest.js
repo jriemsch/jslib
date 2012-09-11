@@ -92,5 +92,13 @@ TestCase("ArrayUtilsTest", {
     assertEquals(2, filtered.length);
     assertEquals(0, filtered[0]);
     assertEquals(9, filtered[1]);
+  },
+
+  testSome: function () {
+    var array = [ 0, 11, 9, 23 ];
+    assertTrue(ArrayUtils.some(array, function (elem) { return elem < 10; }));
+    assertFalse(ArrayUtils.some(array, function (elem) { return elem < 0; }));
+
+    assertFalse(ArrayUtils.some([], function (elem) { return elem < 5; }));
   }
 });

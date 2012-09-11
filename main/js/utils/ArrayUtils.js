@@ -65,6 +65,15 @@ net.riemschneider.utils = net.riemschneider.utils || {};
         }
       }
       return filtered;
+    },
+
+    some: function some(array, predicate) {
+      for (var idx = 0, len = array.length; idx < len; ++idx) {
+        if (predicate(array[idx])) {
+          return true;
+        }
+      }
+      return false;
     }
   };
 }());
