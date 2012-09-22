@@ -30,7 +30,7 @@ net.riemschneider.gestures = net.riemschneider.gestures || {};
               event.preventDefault();
               event.stopPropagation();
             }
-            onTapped();
+            onTapped(endTouchPos.x, endTouchPos.y);
           }
         });
       });
