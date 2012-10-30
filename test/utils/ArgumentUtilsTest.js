@@ -57,6 +57,7 @@ TestCase("ArgumentUtilsTest", {
   testAssertNumber: function () {
     ArgumentUtils.assertNumber(5);
     ArgumentUtils.assertNumber(5.9);
+    ArgumentUtils.assertNumber(0 / 0, true);
 
     assertException(function () { ArgumentUtils.assertNumber(null); }, "TypeError");
     assertException(function () { ArgumentUtils.assertNumber('1'); }, "TypeError");
@@ -65,6 +66,7 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertNumber(true); }, "TypeError");
     assertException(function () { ArgumentUtils.assertNumber({}); }, "TypeError");
     assertException(function () { ArgumentUtils.assertNumber(); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertNumber(0 / 0); }, "TypeError");
   },
 
   testAssertRange: function () {
@@ -182,6 +184,26 @@ TestCase("ArgumentUtilsTest", {
     assertException(function () { ArgumentUtils.assertType(obj1, type2); }, "TypeError");
     assertException(function () { ArgumentUtils.assertType(null, type2); }, "TypeError");
     assertException(function () { ArgumentUtils.assertType(a.b, type2); }, "TypeError");
+  },
+
+  testAssertTypeOneOf: function () {
+    var type1 = { getType: function () { return 'type1'; }};
+    var type2 = { getType: function () { return 'type2'; }};
+    var type3 = { getType: function () { return 'type3'; }};
+    var obj1 = TypeUtils.addType({}, type1);
+    var obj2 = TypeUtils.addType(TypeUtils.addType({}, type1), type2);
+
+    ArgumentUtils.assertTypeOneOf(obj1, [ type1 ]);
+    ArgumentUtils.assertTypeOneOf(obj1, [ type1, type2, type3 ]);
+
+    ArgumentUtils.assertTypeOneOf(obj2, [ type1 ]);
+    ArgumentUtils.assertTypeOneOf(obj2, [ type1, type3 ]);
+    ArgumentUtils.assertTypeOneOf(obj2, [ type2, type3 ]);
+
+    var a = {};
+    assertException(function () { ArgumentUtils.assertTypeOneOf(obj1, [ type2, type3 ]); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertTypeOneOf(null, [ type1, type2, type3 ]); }, "TypeError");
+    assertException(function () { ArgumentUtils.assertTypeOneOf(a.b, [ type1, type2, type3 ]); }, "TypeError");
   },
 
   testAssertContains: function () {

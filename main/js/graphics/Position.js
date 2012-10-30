@@ -20,7 +20,11 @@ net.riemschneider.graphics = net.riemschneider.graphics || {};
       return {
         getX: function getX() { return x; },
         getY: function getY() { return y; },
-        getUnit : function getUnit() { return unit; }
+        getUnit : function getUnit() { return unit; },
+        equals: function equals(other) {
+          ArgumentUtils.assertType(other, net.riemschneider.graphics.Position);
+          return other.getX() === x && other.getY() === y && other.getUnit() === unit;
+        }
       };
     }
   };

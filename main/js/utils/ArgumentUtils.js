@@ -29,9 +29,12 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
     },
 
-    assertNumber: function assertNumber(arg) {
+    assertNumber: function assertNumber(arg, notANumberIsValid) {
       if (typeof arg !== 'number') {
         throw new TypeError('argument should be a number');
+      }
+      if (isNaN(arg) && !notANumberIsValid) {
+        throw new TypeError('argument should not be NaN');
       }
     },
 
@@ -56,7 +59,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 
     assertString: function assertString(arg) {
       if (typeof arg !== 'string') {
-        throw new TypeError('argument should be a string');
+        throw new TypeError('argument should be a string: ' + arg);
       }
     },
 
@@ -89,6 +92,16 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       if (!TypeUtils.isOfType(arg, type)) {
         throw new TypeError('invalid type: ' + arg);
       }
+    },
+
+    assertTypeOneOf: function assertType(arg, types) {
+      this.assertNotNull(arg);
+      for (var idx = 0, len = types.length; idx < len; ++idx) {
+        if (TypeUtils.isOfType(arg, types[idx])) {
+          return;
+        }
+      }
+      throw new TypeError('invalid type: ' + arg);
     },
 
     assertContains: function assertContains(arg, collection) {

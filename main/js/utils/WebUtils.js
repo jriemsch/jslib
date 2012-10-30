@@ -14,6 +14,13 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       } });
     },
 
+    getJson: function getJson(url, callback) {
+      $.ajax({ url: url, dataType: 'json', success: callback, error: function (jqXHR, textStatus, errorThrown) {
+        logger.error(errorThrown);
+        callback(null);
+      } });
+    },
+
     getHtml: function getHtml(url, callback) {
       logger.debug('net.riemschneider.utils.WebUtils.getHtml: sending web request to url: ' + url);
       $.ajax({

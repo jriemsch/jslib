@@ -23,6 +23,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     },
 
     getXml: getExpected,
+    getJson: getExpected,
     getHtml: getExpected,
     getImage: getExpected
   }
