@@ -70,7 +70,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
       logWithType(levels.DEBUG, type, '< ' + resultMessage);
       return result;
-    }
+    };
   }
 
   function setConfig(newConfig) {
@@ -94,7 +94,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
         warn: useIfTypeEnabled(function warn() { logWithType(levels.WARN, type, arguments); }, function () {}),
         error: useIfTypeEnabled(function error() { logWithType(levels.ERROR, type, arguments); }, function () {}),
         fatal: useIfTypeEnabled(function fatal() { logWithType(levels.FATAL, type, arguments); }, function () {})
-      }
+      };
     },
 
     wrapTest: function wrapTest(func) { return getWrapperFunc(func, true); },
@@ -114,7 +114,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
         warn: function () {},
         error: function () {},
         fatal: function () {}
-      }
+      };
     },
 
     wrapTest: function wrapTest(func) { return func; },
@@ -122,5 +122,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     log: function () {}
   };
 
-  net.riemschneider.utils.Log = enabledLog;
+  net.riemschneider.utils.Log = disabledLog;
 }());
