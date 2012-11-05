@@ -26,5 +26,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     getJson: getExpected,
     getHtml: getExpected,
     getImage: getExpected
-  }
+  };
 }());
