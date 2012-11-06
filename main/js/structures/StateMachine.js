@@ -28,8 +28,8 @@ net.riemschneider.structures = net.riemschneider.structures || {};
         start: function start() {
           ArgumentUtils.assertNotNull(startStateId);
           var startState = states[startStateId];
-          startState.onEnter();
           currentStateId = startStateId;
+          startState.onEnter();
         },
 
         transitionTo: function transitionTo(stateId) {
@@ -39,8 +39,8 @@ net.riemschneider.structures = net.riemschneider.structures || {};
           ArgumentUtils.assertNotNull(state);
 
           states[currentStateId].onLeave();
-          state.onEnter();
           currentStateId = stateId;
+          state.onEnter();
         },
 
         getCurrentStateId: function getCurrentStateId() {

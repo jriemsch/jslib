@@ -2,6 +2,8 @@ net.riemschneider.structures = net.riemschneider.structures || {};
 
 // A state base implementation that is connected with a view for usage with the state machine.
 (function () {
+  "use strict";
+
   var TypeUtils = net.riemschneider.utils.TypeUtils;
   var State = net.riemschneider.structures.State;
   var ArgumentUtils = net.riemschneider.utils.ArgumentUtils;

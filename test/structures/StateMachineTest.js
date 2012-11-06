@@ -92,5 +92,25 @@ TestCase('StateMachineTest', {
     State.create(stateMachine, 'to', true);
     assertException(function () { stateMachine.transitionTo('to'); }, 'TypeError');
     assertNull(stateMachine.getCurrentStateId());
+  },
+
+  testOnEnterOfStateCanTransitionImmediatelyAfterStart: function () {
+    var stateMachine = StateMachine.create();
+    State.create(stateMachine, 'to', false);
+    var state = State.create(stateMachine, 'from', true);
+    state.onEnter = function onEnter() { stateMachine.transitionTo('to'); };
+    stateMachine.start();
+    assertEquals('to', stateMachine.getCurrentStateId());
+  },
+
+  testOnEnterOfStateCanTransitionImmediatelyAfterTransitionTo: function () {
+    var stateMachine = StateMachine.create();
+    State.create(stateMachine, 'start', true);
+    State.create(stateMachine, 'to', false);
+    var state = State.create(stateMachine, 'from', false);
+    state.onEnter = function onEnter() { stateMachine.transitionTo('to'); };
+    stateMachine.start();
+    stateMachine.transitionTo('from');
+    assertEquals('to', stateMachine.getCurrentStateId());
   }
 });

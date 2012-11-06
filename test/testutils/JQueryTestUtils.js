@@ -29,7 +29,7 @@ net.riemschneider.testutils = net.riemschneider.testutils || {};
     startRecording: function startRecording(funcName) {
       return net.riemschneider.testutils.JQueryTestUtils.wrap(funcName, function () {
         recorded[funcName] = recorded[funcName] || [];
-        recorded[funcName].push({ obj: this, arguments: arguments });
+        recorded[funcName].push({ obj: this, args: arguments });
       });
     },
 
