@@ -7,26 +7,26 @@ net.riemschneider.utils = net.riemschneider.utils || {};
   net.riemschneider.utils.ObservedProperty = {
     create: function create(obj, property, observer) {
       ArgumentUtils.assertNotNull(obj);
-	  ArgumentUtils.assertString(property);
+      ArgumentUtils.assertString(property);
       ArgumentUtils.assertFunction(observer);
-	  
-	  var propertyCapitalized = property.charAt(0).toUpperCase() + property.slice(1);
-	  var getterName = 'get' + propertyCapitalized;
-	  var setterName = 'set' + propertyCapitalized;
-	  var getter = obj[getterName];
-	  var setter = obj[setterName];
-	  ArgumentUtils.assertFunction(getter);
-	  ArgumentUtils.assertFunction(setter);
-	  
-	  obj[setterName] = function observingSetter(value) {
-	    if (getter() !== value) {
-		  observer(value);
-		}
-	    setter(value);
-	  }
-	  
+
+      var propertyCapitalized = property.charAt(0).toUpperCase() + property.slice(1);
+      var getterName = 'get' + propertyCapitalized;
+      var setterName = 'set' + propertyCapitalized;
+      var getter = obj[getterName];
+      var setter = obj[setterName];
+      ArgumentUtils.assertFunction(getter);
+      ArgumentUtils.assertFunction(setter);
+
+      obj[setterName] = function observingSetter(value) {
+        if (getter.apply(obj) !== value) {
+          observer(value);
+        }
+        setter.apply(obj, [ value ]);
+      };
+
       return {
-		destroy: function destroy() { obj[setterName] = setter; }
+        destroy: function destroy() { obj[setterName] = setter; }
       };
     }
   };
