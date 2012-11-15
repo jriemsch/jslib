@@ -8,15 +8,15 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     create: function create(obj, property, observer) {
       ArgumentUtils.assertNotNull(obj);
 	  ArgumentUtils.assertString(property);
-      ArgumentUtils.assertFunc(observer);
+      ArgumentUtils.assertFunction(observer);
 	  
 	  var propertyCapitalized = property.charAt(0).toUpperCase() + property.slice(1);
 	  var getterName = 'get' + propertyCapitalized;
 	  var setterName = 'set' + propertyCapitalized;
 	  var getter = obj[getterName];
 	  var setter = obj[setterName];
-	  ArgumentUtils.assertFunc(getter);
-	  ArgumentUtils.assertFunc(setter);
+	  ArgumentUtils.assertFunction(getter);
+	  ArgumentUtils.assertFunction(setter);
 	  
 	  obj[setterName] = function observingSetter(value) {
 	    if (getter() !== value) {

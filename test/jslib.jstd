@@ -10,6 +10,7 @@ load:
   - ../main/js/utils/ArgumentUtils.js
   - ../main/js/utils/ClosureUtils.js
   - ../main/js/utils/Observer.js
+  - ../main/js/utils/ObservedProperty.js
   - ../main/js/utils/RegExUtils.js
   - ../main/js/utils/DeviceUtils.js
   - ../main/js/utils/TouchUtils.js
@@ -30,6 +31,7 @@ test:
   - utils/ArgumentUtilsTest.js
   - utils/ClosureUtilsTest.js
   - utils/ObserverTest.js
+  - utils/ObservedPropertyTest.js
   - utils/RegExUtilsTest.js
   - utils/RandomTest.js
   - graphics/PositionTest.js
