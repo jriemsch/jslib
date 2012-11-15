@@ -43,7 +43,7 @@ net.riemschneider.testutils = net.riemschneider.testutils || {};
           caughtException = e;
           throw e;
         }
-      }
+      };
     }
-  }
+  };
 }());

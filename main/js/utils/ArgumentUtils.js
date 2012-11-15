@@ -112,5 +112,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       }
       throw new TypeError('argument not contained: arg = ' + arg + ', collection = ' + JSON.stringify(collection));
     }
-  }
+  };
 }());

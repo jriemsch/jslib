@@ -24,13 +24,13 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 
       switch (window.orientation) {
         case 0: case 180: return { width: window.innerWidth, height: window.innerHeight };
-        case 90: case -90: //noinspection JSSuspiciousNameCombination
-        return { width: window.innerHeight, height: window.innerWidth };
       }
+      //noinspection JSSuspiciousNameCombination
+      return { width: window.innerHeight, height: window.innerWidth };
     },
 
     supportTouchEvents: function supportsTouchEvents() {
       return 'ontouchstart' in document.documentElement;
     }
-  }
+  };
 }());

@@ -27,7 +27,7 @@ net.riemschneider.gestures = net.riemschneider.gestures || {};
             event.preventDefault();
             event.stopPropagation();
           }
-          cancelLongTouch()
+          cancelLongTouch();
         });
 
         touchMoveRemover = TouchUtils.onTouchMove(widget, function (event) {

@@ -6,5 +6,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     getTime: function getTime() { return new Date().getTime(); },
     setTimeout: function (func, time) { return setTimeout(func, time); },
     clearTimeout: function (timer) { clearTimeout(timer); }
-  }
+  };
 }());

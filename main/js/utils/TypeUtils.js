@@ -13,7 +13,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 
   net.riemschneider.utils.TypeUtils = {
     addType: function addType(obj, typeObj) {
-      if (typeof typeObj.getType != 'function') {
+      if (typeof typeObj.getType !== 'function') {
         throw new TypeError('type object without getType function is not allowed');
       }
 
@@ -23,7 +23,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     },
 
     isOfType: function isOfType(obj, typeObj) {
-      if (typeof typeObj.getType != 'function') {
+      if (typeof typeObj.getType !== 'function') {
         throw new TypeError('type object without getType function is not allowed');
       }
 

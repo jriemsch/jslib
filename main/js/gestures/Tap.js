@@ -42,8 +42,8 @@ net.riemschneider.gestures = net.riemschneider.gestures || {};
             touchEndRemover();
           }
         }
-      }
+      };
     }
-  }
+  };
 }());
 

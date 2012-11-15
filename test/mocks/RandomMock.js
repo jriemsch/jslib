@@ -14,5 +14,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
       values = nextValues;
       currentIdx = 0;
     }
-  }
+  };
 }());

@@ -35,5 +35,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     clearTimeout: function clearTimeout(timerId) {
       timeouts = ArrayUtils.filter(timeouts, function (elem) { return elem.timerId !== timerId; });
     }
-  }
+  };
 }());

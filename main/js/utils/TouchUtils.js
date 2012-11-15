@@ -56,7 +56,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
     widget.bind(event, callback);
     return function () {
       widget.unbind(event, callback);
-    }
+    };
   }
 
   net.riemschneider.utils.TouchUtils = TouchUtils;

@@ -6,7 +6,7 @@ TestCase('ViewStateTest', {
   testCreate: function () {
     var registered = false;
     var stateMachine = {
-      registerState: function registerState(stateId, state, isStartState) { registered = true; }
+      registerState: function registerState() { registered = true; }
     };
     TypeUtils.addType(stateMachine, net.riemschneider.structures.StateMachine);
 

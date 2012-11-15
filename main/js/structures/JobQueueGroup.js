@@ -2,8 +2,6 @@ net.riemschneider.structures = net.riemschneider.structures || {};
 
 // Defines a set of job queues used for different purposes, but that are all coordinated by the same group.
 (function () {
-  var ClosureUtils = net.riemschneider.utils.ClosureUtils;
-
   net.riemschneider.structures.JobQueueGroup = {
     create: function create(jobQueues) {
       return {
@@ -18,7 +16,7 @@ net.riemschneider.structures = net.riemschneider.structures || {};
             jobQueues[idx].resume();
           }
         }
-      }
+      };
     }
-  }
+  };
 }());

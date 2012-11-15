@@ -4,5 +4,5 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 (function () {
   net.riemschneider.utils.Random = {
     next: function next() { return Math.random(); }
-  }
+  };
 }());
