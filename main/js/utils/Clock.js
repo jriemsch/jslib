@@ -4,7 +4,7 @@ net.riemschneider.utils = net.riemschneider.utils || {};
 (function () {
   net.riemschneider.utils.Clock = {
     getTime: function getTime() { return new Date().getTime(); },
-    setTimeout: function (func, time) { return setTimeout(func, time); },
+    setTimeout: function (func, time) { return setTimeout(func, time); },
     clearTimeout: function (timer) { clearTimeout(timer); }
   };
 }());

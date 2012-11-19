@@ -25,6 +25,7 @@ load:
   - ../main/js/gestures/Scroll.js
   - ../main/js/gestures/Tap.js
   - ../main/js/gestures/LongTouch.js
+  - ../main/js/ui/Template.js
   - testutils/AsyncTestUtils.js
 test:
   - utils/ArrayUtilsTest.js
@@ -46,3 +47,4 @@ test:
   - gestures/ScrollTest.js
   - gestures/TapTest.js
   - gestures/LongTouchTest.js
+  - ui/TemplateTest.js
