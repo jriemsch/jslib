@@ -1,8 +1,10 @@
 var Position = net.riemschneider.graphics.Position;
+var TypeUtils = net.riemschneider.utils.TypeUtils;
 
 TestCase('PositionTest', {
   testCreate: function () {
     var pos = Position.create(1, 2, Position.Unit.PIXEL);
+    assertTrue(TypeUtils.isOfType(pos, Position));
     assertEquals(1, pos.getX());
     assertEquals(2, pos.getY());
     assertSame(Position.Unit.PIXEL, pos.getUnit());
@@ -37,5 +39,9 @@ TestCase('PositionTest', {
     assertFalse(pos1.equals(pos3));
     assertFalse(pos1.equals(pos4));
     assertFalse(pos1.equals(pos5));
+  },
+
+  testZero: function () {
+    assertTrue(Position.create(0, 0).equals(Position.ZERO));
   }
 });

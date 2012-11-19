@@ -30,4 +30,6 @@ net.riemschneider.graphics = net.riemschneider.graphics || {};
   };
 
   TypeUtils.enhance('net.riemschneider.graphics.Position', net.riemschneider.graphics.Position);
+
+  net.riemschneider.graphics.Position.ZERO = net.riemschneider.graphics.Position.create(0, 0);
 }());

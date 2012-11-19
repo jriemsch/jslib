@@ -15,6 +15,7 @@ load:
   - ../main/js/utils/DeviceUtils.js
   - ../main/js/utils/TouchUtils.js
   - ../main/js/graphics/Position.js
+  - ../main/js/graphics/ImageData.js
   - ../main/js/structures/JobQueue.js
   - ../main/js/structures/JobQueueGroup.js
   - ../main/js/structures/State.js
@@ -35,6 +36,7 @@ test:
   - utils/RegExUtilsTest.js
   - utils/RandomTest.js
   - graphics/PositionTest.js
+  - graphics/ImageDataTest.js
   - structures/JobQueueTest.js
   - structures/JobQueueGroupTest.js
   - structures/StateTest.js
