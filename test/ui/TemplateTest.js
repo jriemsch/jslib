@@ -1,14 +1,20 @@
 var Template = net.riemschneider.ui.Template;
+var TemplateProcessorRegistry = net.riemschneider.ui.TemplateProcessorRegistry;
 var TypeUtils = net.riemschneider.utils.TypeUtils;
 
 TestCase('TemplateTest', {
   setUp: function () {
-    this.div = $('<div class="container" data-template-id="templateId"></div>');
-    this.div.append('<img class="labeledImage" data-id="image" data-attr="src" src="test.png">');
-    this.div.append('<div class="labelText" data-id="text" data-attr="text">test</div>');
-    this.div.append('<div class="style" data-id="className" data-attr="class">class</div>');
+    this.div = $('<div class="container" data-template-id="templateId"><div id="child"></div></div>');
 
     $('body').append(this.div);
+
+    this.processor = {
+      lastClonedElem: null,
+      lastData: null,
+      process: function process(clonedElem, data) { this.lastClonedElem = clonedElem; this.lastData = data; }
+    };
+    this.processorRegistry = TemplateProcessorRegistry.create();
+    this.processorRegistry.addProcessor(this.processor);
   },
 
   tearDown: function () {
@@ -16,46 +22,34 @@ TestCase('TemplateTest', {
   },
 
   testCreate: function () {
-    var template = Template.create('templateId');
+    var template = Template.create('templateId', this.processorRegistry);
     assertTrue(TypeUtils.isOfType(template, Template));
   },
 
   testCreateNullAndTypeSafe: function () {
-    assertException(function () { Template.create(null); });
+    var processorRegistry = this.processorRegistry;
 
-    assertException(function () { Template.create(123); });
-    assertException(function () { Template.create('other'); });
+    assertException(function () { Template.create('templateId', null); });
+    assertException(function () { Template.create(null, processorRegistry); });
+
+    assertException(function () { Template.create(123, processorRegistry); });
+    assertException(function () { Template.create('other', processorRegistry); });
   },
 
   testClone: function () {
-    var template = Template.create('templateId');
+    var template = Template.create('templateId', this.processorRegistry);
     var data = { image: 'test.png', text: 'testtext', className: 'testclass' };
     var clone = template.clone(data);
-    assertTrue(clone.getClone().hasClass('container'));
-    assertTrue(clone.getElement('image').hasClass('labeledImage'));
-    assertTrue(clone.getElement('text').hasClass('labelText'));
-    assertTrue(clone.getElement('className').hasClass('style'));
-    assertTrue(clone.getElement('className').hasClass('testclass'));
-    assertUndefined(clone.getClone().attr('data-template-id'));
+    assertTrue(clone.hasClass('container'));
+    assertEquals(1, clone.find('#child').length);
+    assertUndefined(clone.attr('data-template-id'));
 
-    var labeledImage = clone.getClone().find('.labeledImage');
-    assertEquals(1, labeledImage.length);
-    assertEquals('test.png', labeledImage.attr('src'));
-    assertEquals('none', labeledImage.css('display'));
-    labeledImage.trigger('load');
-    assertEquals('', labeledImage.css('display'));
-
-    var labelText = clone.getClone().find('.labelText');
-    assertEquals(1, labelText.length);
-    assertEquals('testtext', labelText.text());
-
-    var className = clone.getClone().find('.style');
-    assertEquals(1, className.length);
-    assertEquals('class', className.text());
+    assertSame(clone, this.processor.lastClonedElem);
+    assertSame(data, this.processor.lastData);
   },
 
   testCloneNullAndTypeSafe: function () {
-    var template = Template.create('templateId');
+    var template = Template.create('templateId', this.processorRegistry);
     assertException(function () { template.clone(null); }, 'TypeError');
   }
 });

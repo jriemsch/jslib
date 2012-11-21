@@ -25,7 +25,12 @@ load:
   - ../main/js/gestures/Scroll.js
   - ../main/js/gestures/Tap.js
   - ../main/js/gestures/LongTouch.js
+  - ../main/js/ui/TemplateProcessorRegistry.js
   - ../main/js/ui/Template.js
+  - ../main/js/ui/AddClassProcessor.js
+  - ../main/js/ui/HideImageUntilLoadedProcessor.js
+  - ../main/js/ui/SetSrcAttributeProcessor.js
+  - ../main/js/ui/SetTextProcessor.js
   - testutils/AsyncTestUtils.js
 test:
   - utils/ArrayUtilsTest.js
@@ -47,4 +52,9 @@ test:
   - gestures/ScrollTest.js
   - gestures/TapTest.js
   - gestures/LongTouchTest.js
+  - ui/TemplateProcessorRegistryTest.js
   - ui/TemplateTest.js
+  - ui/AddClassProcessorTest.js
+  - ui/HideImageUntilLoadedProcessorTest.js
+  - ui/SetSrcAttributeProcessorTest.js
+  - ui/SetTextProcessorTest.js
