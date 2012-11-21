@@ -25,22 +25,24 @@ net.riemschneider.ui = net.riemschneider.ui || {};
           for (var idx = 0, len = htmlElements.length; idx < len; ++idx) {
             var elem = $(htmlElements[idx]);
             var key = elem.attr('data-id');
-            if (data.hasOwnProperty(key)) {
-              var value = data[key];
-              var attr = elem.attr('data-attr');
-              if (attr === 'text') {
-                elem.text(value);
-              }
-              else {
-                elem.attr(attr, value);
-              }
-
-              elements[key] = elem;
+            var attr = elem.attr('data-attr');
+            var value = data[key];
+            if (attr === 'text') {
+              elem.text(value);
+            }
+            else if (attr === 'class') {
+              elem.addClass(value);
             }
             else {
-              elem.remove();
+              elem.attr(attr, value);
             }
+
+            elements[key] = elem;
           }
+
+          var allImages = clonedElement.find('img');
+          allImages.hide();
+          allImages.load(function onLoaded() { $(this).show(); });
 
           return {
             getClone: function getClone() { return clonedElement; },
