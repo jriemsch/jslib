@@ -51,5 +51,20 @@ TestCase('TemplateTest', {
   testCloneNullAndTypeSafe: function () {
     var template = Template.create('templateId', this.processorRegistry);
     assertException(function () { template.clone(null); }, 'TypeError');
+  },
+
+  testCallsOnCloned: function () {
+    var template = Template.create('templateId', this.processorRegistry);
+    var lastClonedElem = null;
+    var data = { image: 'test.png', text: 'testtext', className: 'testclass' };
+    var processor = this.processor;
+    template.onCloned = function onCloned(clonedElem, clonedData) {
+      assertSame(data, clonedData);
+      assertSame(data, processor.lastData);
+      assertSame(clonedElem, processor.lastClonedElem);
+      lastClonedElem = clonedElem;
+    };
+    var clone = template.clone(data);
+    assertSame(clone, lastClonedElem);
   }
 });

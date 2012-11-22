@@ -12,21 +12,26 @@ net.riemschneider.ui = net.riemschneider.ui || {};
       ArgumentUtils.assertString(templateId);
       ArgumentUtils.assertNotNull(processorRegistry);
 
-      var template = $('[data-template-id="' + templateId + '"]');
-      ArgumentUtils.assertRange(template.length, 1, 1);
+      var templateDiv = $('[data-template-id="' + templateId + '"]');
+      ArgumentUtils.assertRange(templateDiv.length, 1, 1);
 
-      return {
+      var template = {
         clone: function clone(data) {
           ArgumentUtils.assertNotNull(data);
 
-          var clonedElement = template.clone();
+          var clonedElement = templateDiv.clone();
           clonedElement.removeAttr('data-template-id');
 
           processorRegistry.call(clonedElement, data);
 
+          if (template.onCloned) {
+            template.onCloned(clonedElement, data);
+          }
+
           return clonedElement;
         }
       };
+      return template;
     }
   };
 
