@@ -29,6 +29,7 @@ load:
   - ../main/js/ui/Template.js
   - ../main/js/ui/AddClassProcessor.js
   - ../main/js/ui/HideImageUntilLoadedProcessor.js
+  - ../main/js/ui/ReplaceWithTemplateProcessor.js
   - ../main/js/ui/SetSrcAttributeProcessor.js
   - ../main/js/ui/SetTextProcessor.js
   - testutils/AsyncTestUtils.js
@@ -56,5 +57,6 @@ test:
   - ui/TemplateTest.js
   - ui/AddClassProcessorTest.js
   - ui/HideImageUntilLoadedProcessorTest.js
+  - ui/ReplaceWithTemplateProcessorTest.js
   - ui/SetSrcAttributeProcessorTest.js
   - ui/SetTextProcessorTest.js
