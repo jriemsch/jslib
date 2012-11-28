@@ -62,7 +62,16 @@ TestCase('TapTest', {
   },
 
   testStyleChange: function () {
-    this.tap = Tap.create(this.div, function () {}, true, 'pressed');
+    this.tap = Tap.create(this.div, function () {}, true, 'pressedCustom');
+
+    this.div.trigger(jQuery.Event('mousedown', { pageX: 120, pageY: 110 }));
+    assertTrue(this.div.hasClass('pressedCustom'));
+    this.div.trigger(jQuery.Event('mouseup', { pageX: 120, pageY: 110 }));
+    assertFalse(this.div.hasClass('pressedCustom'));
+  },
+
+  testStyleChangeWithDefaultStyle: function () {
+    this.tap = Tap.create(this.div, function () {}, true);
 
     this.div.trigger(jQuery.Event('mousedown', { pageX: 120, pageY: 110 }));
     assertTrue(this.div.hasClass('pressed'));

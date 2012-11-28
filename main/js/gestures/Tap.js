@@ -13,16 +13,12 @@ net.riemschneider.gestures = net.riemschneider.gestures || {};
           startEvent.stopPropagation();
         }
 
-        if (pressedStyle) {
-          widget.addClass(pressedStyle);
-        }
+        widget.addClass(pressedStyle ? pressedStyle : 'pressed');
 
         touchEndRemover = TouchUtils.onTouchEnd(widget, function (event) {
           touchEndRemover();
           touchEndRemover = null;
-          if (pressedStyle) {
-            widget.removeClass(pressedStyle);
-          }
+          widget.removeClass(pressedStyle ? pressedStyle : 'pressed');
           var endTouchPos = TouchUtils.getTouchPosOfEvent(event);
           if (Math.abs(endTouchPos.x - startTouchPos.x) <= 8 && Math.abs(endTouchPos.y - startTouchPos.y) <= 8 &&
               !startEvent.concurrentCallbackWasCalled) {

@@ -4,6 +4,7 @@ load:
   - ../main/libs/jquery-1.7.1.js
   - ../main/js/JsLib.js
   - ../main/js/utils/ArrayUtils.js
+  - ../test/testutils/JQueryTestUtils.js
   - mocks/ClockMock.js
   - mocks/RandomMock.js
   - ../main/js/utils/TypeUtils.js
@@ -32,6 +33,8 @@ load:
   - ../main/js/ui/ReplaceWithTemplateProcessor.js
   - ../main/js/ui/SetSrcAttributeProcessor.js
   - ../main/js/ui/SetTextProcessor.js
+  - ../main/js/ui/TapEventProcessor.js
+  - ../main/js/ui/TextInputProcessor.js
   - testutils/AsyncTestUtils.js
 test:
   - utils/ArrayUtilsTest.js
@@ -60,3 +63,5 @@ test:
   - ui/ReplaceWithTemplateProcessorTest.js
   - ui/SetSrcAttributeProcessorTest.js
   - ui/SetTextProcessorTest.js
+  - ui/TapEventProcessorTest.js
+  - ui/TextInputProcessorTest.js
