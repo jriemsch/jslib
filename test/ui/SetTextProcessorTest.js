@@ -11,6 +11,8 @@ TestCase('SetTextProcessorTest', {
     assertEquals('(newA)(oldB)(newC)(afterA)', div.text());
     assertEquals('(oldB)', div.find('#b').text());
     assertEquals('(newC)', div.find('#c').text());
+    assertEquals(0, div.find('[data-text]').length);
+    assertUndefined(div.attr('data-text'));
   },
 
   testCreateAndProcessWithoutParent: function () {

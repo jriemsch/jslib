@@ -11,6 +11,8 @@ TestCase('SetSrcAttributeProcessorTest', {
     assertEquals('A', div.attr('src'));
     assertUndefined(div.find('#b').attr('src'));
     assertEquals('C', div.find('#c').attr('src'));
+    assertEquals(0, div.find('[data-attr-src]').length);
+    assertUndefined(div.attr('data-attr-src'));
   },
 
   testCreateAndProcessWithoutParent: function () {

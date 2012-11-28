@@ -10,6 +10,7 @@ net.riemschneider.ui = net.riemschneider.ui || {};
         process: function process(clonedElement, data) {
           clonedElement.find('[data-attr-src]').add(clonedElement.filter('[data-attr-src]')).each(function () {
             $(this).attr('src', data[$(this).attr('data-attr-src')]);
+            $(this).removeAttr('data-attr-src');
           });
         }
       };

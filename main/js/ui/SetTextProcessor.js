@@ -11,6 +11,7 @@ net.riemschneider.ui = net.riemschneider.ui || {};
           clonedElement.find('[data-text]').add(clonedElement.filter('[data-text]')).each(function () {
             $(this).contents().first().filter(function () { return this.nodeType === 3; }).remove();
             $(this).prepend(data[$(this).attr('data-text')]);
+            $(this).removeAttr('data-text');
           });
         }
       };

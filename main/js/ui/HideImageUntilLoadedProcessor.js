@@ -11,6 +11,7 @@ net.riemschneider.ui = net.riemschneider.ui || {};
           var allImages = clonedElement.find('img').add(clonedElement.filter('img'));
           allImages.hide();
           allImages.load(function onLoaded() { $(this).show(); });
+          allImages.attr('data-hide-image-until-loaded-processed', '');
         }
       };
     }

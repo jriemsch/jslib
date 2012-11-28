@@ -7,10 +7,12 @@ TestCase('ReplaceWithTemplateProcessorTest', {
     $('body').empty();
 
     $('body').append($('<div data-template-id="replacement" class="replacement">(replaced)</div>'));
+    $('body').append($('<div data-template-id="replacementNoClass">(replaced)</div>'));
 
     this.processor = ReplaceWithTemplateProcessor.create();
     this.templateProcessorRegistry = TemplateProcessorRegistry.create();
     this.template = Template.create('replacement', this.templateProcessorRegistry);
+    this.templateNoClass = Template.create('replacementNoClass', this.templateProcessorRegistry);
   },
 
   tearDown: function () {
@@ -23,8 +25,9 @@ TestCase('ReplaceWithTemplateProcessorTest', {
     this.processor.process(div, { a: { template: template }, b: { template: template }, c: { template: template } });
     assertFalse(div.hasClass('replacement'));
     assertFalse(div.find('#b').hasClass('replacement'));
-    assertTrue(div.find('#c').hasClass('old'));
-    assertTrue(div.find('#c').hasClass('replacement'));
+    assertEquals('old replacement', div.find('#c').attr('class'));
+    assertEquals(0, div.find('[data-replace-with-template]').length);
+    assertUndefined(div.attr('data-replace-with-template'));
   },
 
   testCreateAndProcessDoesNotReplaceParent: function () {
@@ -32,5 +35,26 @@ TestCase('ReplaceWithTemplateProcessorTest', {
     var div = $('<div id="a" data-replace-with-template="a"></div>');
     this.processor.process(div, { a: { template: template } });
     assertFalse(div.hasClass('replacement'));
+  },
+
+  testCreateAndProcessWithoutClasses: function () {
+    var templateNoClass = this.templateNoClass;
+    var div = $('<div id="a"><div id="b"></div><div id="c" data-replace-with-template="c"></div></div>');
+    this.processor.process(div, { c: { template: templateNoClass } });
+    assertUndefined(div.find('#c').attr('class'));
+  },
+
+  testCreateAndProcessOldWithoutClasses: function () {
+    var template = this.template;
+    var div = $('<div id="a"><div id="b"></div><div id="c" data-replace-with-template="c"></div></div>');
+    this.processor.process(div, { c: { template: template } });
+    assertEquals('replacement', div.find('#c').attr('class'));
+  },
+
+  testCreateAndProcessNewWithoutClasses: function () {
+    var templateNoClass = this.templateNoClass;
+    var div = $('<div id="a"><div id="b"></div><div id="c" class="old" data-replace-with-template="c"></div></div>');
+    this.processor.process(div, { c: { template: templateNoClass } });
+    assertEquals('old', div.find('#c').attr('class'));
   }
 });

@@ -11,6 +11,8 @@ TestCase('AddClassProcessorTest', {
     assertTrue(div.hasClass('A'));
     assertFalse(div.find('#b').hasClass('B'));
     assertTrue(div.find('#c').hasClass('C'));
+    assertEquals(0, div.find('[data-class]').length);
+    assertUndefined(div.attr('data-class'));
   },
 
   testCreateAndProcessWithoutParent: function () {

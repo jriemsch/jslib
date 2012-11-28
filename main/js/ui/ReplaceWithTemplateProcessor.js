@@ -13,10 +13,14 @@ net.riemschneider.ui = net.riemschneider.ui || {};
             var templateData = data[$(this).attr('data-replace-with-template')];
             var newElement = templateData.template.clone(templateData);
             var id = $(this).attr('id');
-            var cssClasses = $(this).attr('class') + ' ' + newElement.attr('class');
+            var oldClasses = $(this).attr('class');
+            var newClasses = newElement.attr('class');
+            if (oldClasses || newClasses) {
+              var cssClasses = (oldClasses ? oldClasses + (newClasses ? ' ' + newClasses : '' ) : newClasses);
+              newElement.attr('class', cssClasses);
+            }
             $(this).replaceWith(newElement);
             newElement.attr('id', id);
-            newElement.attr('class', cssClasses);
           });
         }
       };
