@@ -32,6 +32,7 @@ load:
   - ../main/js/ui/HideImageUntilLoadedProcessor.js
   - ../main/js/ui/ReplaceWithTemplateProcessor.js
   - ../main/js/ui/SetSrcAttributeProcessor.js
+  - ../main/js/ui/SetStyleProcessor.js
   - ../main/js/ui/SetTextProcessor.js
   - ../main/js/ui/TapEventProcessor.js
   - ../main/js/ui/TextInputProcessor.js
@@ -62,6 +63,7 @@ test:
   - ui/HideImageUntilLoadedProcessorTest.js
   - ui/ReplaceWithTemplateProcessorTest.js
   - ui/SetSrcAttributeProcessorTest.js
+  - ui/SetStyleProcessorTest.js
   - ui/SetTextProcessorTest.js
   - ui/TapEventProcessorTest.js
   - ui/TextInputProcessorTest.js
